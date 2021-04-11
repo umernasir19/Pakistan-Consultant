@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using SSS.BLL.Report;
 using SSS.Property.Report;
 using SSS.Property.Setups;
+using SSS.Property.Transactions;
+using SSS.Property.Transactions.ViewModels;
 using SSS.Utility;
 using System;
 using System.Collections.Generic;
@@ -91,6 +93,29 @@ namespace SMSYSTEM.Controllers
             }
         }
 
+        [HttpPost]
+        public new JsonResult  GetInventoryInfo(LP_Inv_Report objrprtparam)
+        {
+            if (Session["LOGGEDIN"] != null)
+            {
+                try
+                {
+                    string stock = base.GetInventoryInfo(objrprtparam).Compute("SUM(stock)", string.Empty).ToString();
+
+
+                    return Json(new { data = stock, success = true, statuscode = 200, count = stock }, JsonRequestBehavior.AllowGet);
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { data = ex.Message, success = false, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { data = "Session Expired", success = false, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public FileResult Download(string fpath)
         {
@@ -100,5 +125,48 @@ namespace SMSYSTEM.Controllers
             string fileName = Path.GetFileName(fullName);
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
+
+
+
+        #region Iventory Moment
+
+        public  ActionResult InventoryMovement()
+        {
+            LP_Inventory_Movement objinvrprt = new LP_Inventory_Movement();
+            if (Session["LOGGEDIN"] != null)
+            {
+                objinvrprt.BranchList = Helper.ConvertDataTable<Branch_Property>(ViewAllBranches());
+                objinvrprt.ProductList = Helper.ConvertDataTable<Product_Property>(ViewAllProduct());
+                objinvrprt.WareHouseList = Helper.ConvertDataTable<WareHouse_Property>(ViewWareHouses());
+                return View(objinvrprt);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult TransferInventory(LP_Inventory_Movement objINV)
+
+        {
+            try
+            {
+                objINV.TransactionType = 12;
+                objINV.Useridx = Convert.ToInt32(Session["UID"].ToString());
+                objINV.DateCreated = DateTime.Now;
+                objINV.DetailData = Helper.ToDataTable<LP_InventoryLogs_Property>(objINV.InventoryLogs);
+                objLP_Inventory_BLL = new LP_Inventory_BLL();
+               bool flag= objLP_Inventory_BLL.TransferInventory(objINV);
+                return Json(new { data = "/Reports/InventoryReport.Pdf", success = flag, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "/Reports/InventoryReport.Pdf", success = true, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        #endregion
     }
 }

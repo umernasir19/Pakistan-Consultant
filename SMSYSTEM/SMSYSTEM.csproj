@@ -275,6 +275,7 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\itemUnitController.cs" />
     <Compile Include="Controllers\MRNController.cs" />
+    <Compile Include="Controllers\OpeningController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PInvoiceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SalesOrderController.cs" />
     <Compile Include="Controllers\TaxesController.cs" />
     <Compile Include="Controllers\ThirdTierController.cs" />
@@ -299,6 +301,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InvoiceReciept.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceReciept.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -378,6 +386,7 @@
     <Content Include="Views\SalesOrder\SalesReturn.cshtml" />
     <Content Include="Views\Activity\Activity.cshtml" />
     <Content Include="Views\Activity\FinsihProducts.cshtml" />
+    <Content Include="Views\Inventory\InventoryMovement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -392,6 +401,8 @@
     <Folder Include="Views\companyCurrency\" />
     <Folder Include="Views\CustomerType\" />
     <Folder Include="Views\FirstTier\" />
+    <Folder Include="Views\Opening\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SSS.BLL\SSS.BLL.csproj">
@@ -411,6 +422,10 @@
     <EmbeddedResource Include="Reports\InventoryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InventoryReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InvoiceReciept.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceReciept.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -13,9 +13,9 @@ using System.Web.Mvc;
 
 namespace SMSYSTEM.Controllers
 {
-    public class MRNController : Controller
+    public class MRNController : BaseController
     {
-        #region Changes
+        #region MRN
         MRNVM_Property objMRNVM_Property;
         LP_MRN_Master_Property objMRNProperty;
         LP_MRN_BLL objMRNBll;
@@ -59,6 +59,7 @@ namespace SMSYSTEM.Controllers
                 
                 //objMRNVM_Property.VendorLST = Helper.ConvertDataTable<Vendors_Property>(objvendorbll.ViewAll());
                 objMRNVM_Property.ProductList = Helper.ConvertDataTable<Product_Property>(objProductbll.ViewAll());
+                objMRNVM_Property.WareHouseList= Helper.ConvertDataTable<WareHouse_Property>(ViewWareHouses());
                 objMRNVM_Property.mrnDate = DateTime.Now.ToString("yyyy-MM-dd");
                
                 if (id > 0)
@@ -72,6 +73,8 @@ namespace SMSYSTEM.Controllers
                     DataTable dt= objMRNBll.SelectById();
                     objMRNVM_Property.idx =Convert.ToInt16(dt.Rows[0]["mrnIdx"].ToString());
                     objMRNVM_Property.description = dt.Rows[0]["description"].ToString();
+                    objMRNVM_Property.WarerHouseID =Convert.ToInt32(dt.Rows[0]["WarerHouseID"].ToString());
+
                     objMRNVM_Property.mrNumber = dt.Rows[0]["mrNumber"].ToString();
                     objMRNVM_Property.mrnDate = DateTime.Parse(dt.Rows[0]["mrnDate"].ToString()).ToString("yyyy-MM-dd");
                     //foreach(DataRow dr in dt.Rows)
@@ -110,6 +113,8 @@ namespace SMSYSTEM.Controllers
                 objMRNProperty = new LP_MRN_Master_Property();
                 objMRNProperty.idx = objMRN.idx;
                 objMRNProperty.mrNumber = objMRN.mrNumber;
+                objMRNProperty.WarerHouseID = objMRN.WarerHouseID;
+
                 //objMRNProperty.vendorIdx = objMRN.vendorIdx;
                 //objMRNProperty.MRNTypeIdx = objMRN.MRNTypeIdx;
                 objMRNProperty.mrnDate = DateTime.Parse(objMRN.mrnDate);

@@ -15,6 +15,9 @@ namespace SSS.Property.Report
         public DateTime fromdate { get; set; }
         [DataType(DataType.Date)]
         public DateTime todate { get; set; }
+
+        public int? WareHouseId { get; set; }
+
         public List<Product_Property> ProductList { get; set; }
         public List<Branch_Property> BranchList { get; set; }
     }

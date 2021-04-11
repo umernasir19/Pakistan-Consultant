@@ -131,16 +131,19 @@ namespace SSS.DAL.Setups
 
             try
             {
-                //cmdToExecute.Parameters.Add(new SqlParameter("@Idx", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Company_ID));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@CompanyIdx", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Distributor_ID));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@BranchIdx", SqlDbType.VarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.WH_Location_Code));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@WareHouseName", SqlDbType.NVarChar, 50, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Description));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@Is_Active", SqlDbType.Bit, 1, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Is_Active));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@CreationDate", SqlDbType.DateTime, 8, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Created_on));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@createdByUserIdx", SqlDbType.NVarChar, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Created_by));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@lastModifiedByUserIdx", SqlDbType.NVarChar, 50, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Status));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@LastModificationDate", SqlDbType.Int, 4, ParameterDirection.Output, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.ID));
-                //cmdToExecute.Parameters.Add(new SqlParameter("@IsMainWareHouse", SqlDbType.Int, 4, ParameterDirection.Output, false, 10, 0, "", DataRowVersion.Proposed, _errorCode));
+                //updated by umer 25/3/21
+                cmdToExecute.Parameters.Add(new SqlParameter("@Idx", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.Idx));
+                cmdToExecute.Parameters.Add(new SqlParameter("@CompanyIdx", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.CompanyIdx));
+                cmdToExecute.Parameters.Add(new SqlParameter("@BranchIdx", SqlDbType.Int, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.BranchIdx));
+                cmdToExecute.Parameters.Add(new SqlParameter("@WareHouseName", SqlDbType.Text, 50, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.WareHouseName));
+                cmdToExecute.Parameters.Add(new SqlParameter("@IsActive", SqlDbType.Bit, 1, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.IsActive));
+                cmdToExecute.Parameters.Add(new SqlParameter("@CreationDate", SqlDbType.DateTime, 8, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.CreationDate));
+                cmdToExecute.Parameters.Add(new SqlParameter("@createdByUserIdx", SqlDbType.Int, 20, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.createdByUserIdx));
+                cmdToExecute.Parameters.Add(new SqlParameter("@lastModifiedByUserIdx", SqlDbType.Int, 50, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, objWarehouse.lastModifiedByUserIdx));
+                //cmdToExecute.Parameters.Add(new SqlParameter("@LastModificationDate", SqlDbType.Date, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.LastModificationDate));
+                cmdToExecute.Parameters.Add(new SqlParameter("@IsMainWareHouse", SqlDbType.Bit, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.IsMainWareHouse));
+                cmdToExecute.Parameters.Add(new SqlParameter("@Isvisible", SqlDbType.Bit, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.IsVisible));
+
                 //cmdToExecute.Parameters.Add(new SqlParameter("@Record_Table_Name", SqlDbType.NVarChar, 50, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Record_Table_Name));
                 ////cmdToExecute.Parameters.Add(new SqlParameter("@Operation", SqlDbType.NVarChar, 50, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Operation));
                 //cmdToExecute.Parameters.Add(new SqlParameter("@Operated_By", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, ObjWhLocationProperty.Operated_By));
@@ -159,23 +162,24 @@ namespace SSS.DAL.Setups
                         cmdToExecute.Transaction = _mainConnectionProvider.CurrentTransaction;
                     }
                 }
-                transaction = _mainConnection.BeginTransaction();
+                this.StartTransaction();
+                cmdToExecute.Transaction = this.Transaction;
                 // Execute query.
                 _rowsAffected = cmdToExecute.ExecuteNonQuery();
                 //ObjWhLocationProperty.ID = (SqlInt32)cmdToExecute.Parameters["@iID"].Value;
-                _errorCode = (SqlInt32)cmdToExecute.Parameters["@iErrorCode"].Value;
+                //_errorCode = (SqlInt32)cmdToExecute.Parameters["@iErrorCode"].Value;
 
-                if (_errorCode != (int)LLBLError.AllOk)
-                {
-                    // Throw error.
-                    throw new Exception("Stored Procedure 'sp_WH_LOCATIONS_Insert' reported the ErrorCode: " + _errorCode);
-                }
-                transaction.Commit();
+                //if (_errorCode != (int)LLBLError.AllOk)
+                //{
+                //    // Throw error.
+                //    throw new Exception("Stored Procedure 'sp_WH_LOCATIONS_Insert' reported the ErrorCode: " + _errorCode);
+                //}
+                this.Commit();
                 return true;
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
+                this.RollBack();
                 // some error occured. Bubble it to caller and encapsulate Exception object
                 throw new Exception("WH_LOCATIONS::Insert::Error occured.", ex);
             }
@@ -265,6 +269,8 @@ namespace SSS.DAL.Setups
             try
             {
                 cmdToExecute.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.Idx));
+                cmdToExecute.Parameters.Add(new SqlParameter("@branchidx", SqlDbType.Int, 4, ParameterDirection.Input, false, 10, 0, "", DataRowVersion.Proposed, objWarehouse.BranchIdx));
+
                 //cmdToExecute.Parameters.Add(new SqlParameter("@iErrorCode", SqlDbType.Int, 4, ParameterDirection.Output, false, 10, 0, "", DataRowVersion.Proposed, _errorCode));
 
                 if (_mainConnectionIsCreatedLocal)
@@ -281,14 +287,15 @@ namespace SSS.DAL.Setups
                 }
 
                 // Execute query.
+                
                 adapter.Fill(toReturn);
-                _errorCode = (SqlInt32)cmdToExecute.Parameters["@iErrorCode"].Value;
+                //_errorCode = (SqlInt32)cmdToExecute.Parameters["@iErrorCode"].Value;
 
-                if (_errorCode != (int)LLBLError.AllOk)
-                {
-                    // Throw error.
-                    throw new Exception("Stored Procedure 'sp_WH_LOCATIONS_SelectOne' reported the ErrorCode: " + _errorCode);
-                }
+                //if (_errorCode != (int)LLBLError.AllOk)
+                //{
+                //    // Throw error.
+                //    throw new Exception("Stored Procedure 'sp_WH_LOCATIONS_SelectOne' reported the ErrorCode: " + _errorCode);
+                //}
 
                 if (toReturn.Rows.Count > 0)
                 {

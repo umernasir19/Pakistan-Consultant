@@ -206,6 +206,7 @@
     <Compile Include="Transactions\LP_GRN_Detail_Property.cs" />
     <Compile Include="Transactions\LP_GRN_Master_Property.cs" />
     <Compile Include="Transactions\LP_InventoryLogs_Property.cs" />
+    <Compile Include="Transactions\LP_Inventory_Transfer.cs" />
     <Compile Include="Transactions\LP_MRN_Detail_Property.cs" />
     <Compile Include="Transactions\LP_MRN_Master_Property.cs" />
     <Compile Include="Transactions\LP_PIReturn_Details_Property.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Transactions\SS_Cashmemo_Property.cs" />
     <Compile Include="Transactions\StockAdjustmentOutMaster_Property.cs" />
     <Compile Include="Transactions\ViewModels\LP_GRN_ViewModel.cs" />
+    <Compile Include="Transactions\ViewModels\LP_Inventory_Movement.cs" />
     <Compile Include="Transactions\ViewModels\LP_PI_ViewModel.cs" />
     <Compile Include="Transactions\ViewModels\LP_Voucher_ViewModel.cs" />
   </ItemGroup>

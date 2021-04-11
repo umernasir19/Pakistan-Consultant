@@ -204,14 +204,14 @@ where v.visible=1";
 
             try
             {
-                
+
                 cmdToExecute.Parameters.Add(new SqlParameter("@vendorTypeIdx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.vendorTypeIdx));
                 cmdToExecute.Parameters.Add(new SqlParameter("@vendorCatIdx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.vendorCatIdx));
                 //cmdToExecute.Parameters.Add(new SqlParameter("@VendorsSubCatIdx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.VendorsSubCatIdx));
                 cmdToExecute.Parameters.Add(new SqlParameter("@vendorCode", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.vendorCode));
                 cmdToExecute.Parameters.Add(new SqlParameter("@vendorName", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.vendorName));
                 cmdToExecute.Parameters.Add(new SqlParameter("@contact", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.contact));
-           
+
                 cmdToExecute.Parameters.Add(new SqlParameter("@address", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.address));
                 cmdToExecute.Parameters.Add(new SqlParameter("@createdByUserIdx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.createdByUserIdx));
 
@@ -276,7 +276,7 @@ where v.visible=1";
                 cmdToExecute.Parameters.Add(new SqlParameter("@contact", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.contact));
 
                 cmdToExecute.Parameters.Add(new SqlParameter("@address", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.address));
-           
+
                 cmdToExecute.Parameters.Add(new SqlParameter("@lastModifiedByUserIdx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.lastModifiedByUserIdx));
                 cmdToExecute.Parameters.Add(new SqlParameter("@lastModificationDate", SqlDbType.NVarChar, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.lastModificationDate));
                 cmdToExecute.Parameters.Add(new SqlParameter("@idx", SqlDbType.Int, 500, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, objVendors.idx));
@@ -472,7 +472,7 @@ where v.visible=1";
             try
             {
                 cmdToExecute.Parameters.Add(new SqlParameter("@idx", SqlDbType.Int, 100, ParameterDirection.Input, true, 0, 0, "", DataRowVersion.Proposed, id));
-               
+
 
                 if (_mainConnectionIsCreatedLocal)
                 {
@@ -489,7 +489,7 @@ where v.visible=1";
 
                 // Execute query.
                 adapter.Fill(toReturn);
-                
+
                 if (_errorCode != (int)LLBLError.AllOk)
                 {
                     // Throw error.

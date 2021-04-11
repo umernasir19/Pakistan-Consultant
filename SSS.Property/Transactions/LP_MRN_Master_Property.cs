@@ -95,9 +95,14 @@ namespace SSS.Property.Transactions
             get { return _status; }
             set { _status = value; }
         }
+        private int _wareHouseID;
+        public int WarerHouseID
+        {
+            get { return _wareHouseID; }
+            set { _wareHouseID = value; }
+        }
 
-    
-     
+
         private DataTable _detail_data;
         public DataTable DetailData
         {

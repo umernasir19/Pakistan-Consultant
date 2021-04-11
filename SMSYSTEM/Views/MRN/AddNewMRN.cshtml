@@ -29,6 +29,15 @@
                 </div>
                 @Html.ValidationMessageFor(model => model.mrnDate, "", new { @class = "text-danger" })
             </div>
+
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Select WareHouse*:</label>
+                    @Html.DropDownListFor(model => model.WarerHouseID, new SelectList(Model.WareHouseList, "idx", "WareHouseName"), "Select WareHouse", new { @Class = "form-control font-weight-bold" })
+                </div>
+                @Html.ValidationMessageFor(model => model.WarerHouseID, "", new { @class = "text-danger" })
+            </div>
         </div>
         <hr />
         <div class="row" id="PurchaseDetails">
@@ -314,7 +323,8 @@
                 //vendorIdx: $('#vendorIdx').val(),
                 mrnDate: $('#mrnDate').val(),
                 description: $('#description').val(),
-                //totalAmount: $('#totalAmount').val(),
+                WarerHouseID: $("#WarerHouseID option:selected").val(),
+                //WarerHouseID: $('#WarerHouseID').val(),
                 //PageList:[{ID:1},{ID:2},{ID:3}]
                 MrnDetailsLST: []
             }

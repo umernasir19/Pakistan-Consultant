@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using SSS.BLL.Report;
 using SSS.BLL.Setups;
 using SSS.BLL.Transactions;
+using SSS.Property.Report;
 using SSS.Property.Setups;
 using SSS.Property.Transactions;
 using SSS.Property.Transactions.ViewModels;
@@ -503,6 +505,51 @@ namespace SMSYSTEM.Controllers
                 return new DataTable();
             }
 
+        }
+
+        #region WareHouse
+        public DataTable ViewWareHouses()
+        {
+            if (Session["LOGGEDIN"] != null)
+            {
+
+                try
+                {
+                    WareHouse_Property objproperty = new WareHouse_Property();
+                    objproperty.BranchIdx =Convert.ToInt32(Session["BRANCHID"].ToString());//user logged in session branchIdx
+                    WareHouse_BLL objBLL = new WareHouse_BLL(objproperty);
+                    return objBLL.SelectOne();
+
+
+                }
+                catch (Exception ex)
+                {
+                    return new DataTable();
+                }
+            }
+            else
+            {
+                return new DataTable();
+            }
+
+        }
+
+        #endregion
+        
+        public DataTable GetInventoryInfo(LP_Inv_Report objrprtparam)
+
+        {
+            try
+            {
+                LP_Inventory_BLL objLP_Inventory_BLL = new LP_Inventory_BLL(objrprtparam);
+                return objLP_Inventory_BLL.GetInventoryReport().Tables[0];
+
+                
+                          }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
         }
     }
 }

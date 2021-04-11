@@ -100,7 +100,7 @@ namespace SMSYSTEM.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { data = ex.Message, success = false, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = ex.InnerException, success = false, statuscode = 400, count = 0 }, JsonRequestBehavior.AllowGet);
             }
 
             }

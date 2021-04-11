@@ -105,9 +105,12 @@ namespace SMSYSTEM.Controllers
                 if (objGRN.ID > 0)
                 {
                     //update
-                   
-                    
+
+                    objGRNProperty.Date_Created = DateTime.Now;
                     objGRNProperty.TableName = "GRN_Detail";
+                    objGRNProperty.Status = "Active";
+                    objGRNProperty.BRANCHID = Convert.ToInt16(Session["BRANCHID"].ToString());
+                    objGRNProperty.User_ID = Convert.ToInt16(Session["UID"].ToString());
                     objGRNBll = new LP_GRN_BLL(objGRNProperty);
                     flag = objGRNBll.Insert();
                 }

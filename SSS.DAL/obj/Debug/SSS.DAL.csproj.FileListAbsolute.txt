@@ -530,3 +530,11 @@ D:\Updated\Updated\SSS.DAL\bin\Debug\SSS.Property.pdb
 D:\Updated\Updated\SSS.DAL\obj\Debug\SSS.DAL.csprojResolveAssemblyReference.cache
 D:\Updated\Updated\SSS.DAL\obj\Debug\SSS.DAL.dll
 D:\Updated\Updated\SSS.DAL\obj\Debug\SSS.DAL.pdb
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\bin\Debug\SSS.DAL.dll.config
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\bin\Debug\SSS.DAL.dll
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\bin\Debug\SSS.DAL.pdb
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\bin\Debug\SSS.Property.dll
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\bin\Debug\SSS.Property.pdb
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\obj\Debug\SSS.DAL.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\obj\Debug\SSS.DAL.dll
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.DAL\obj\Debug\SSS.DAL.pdb

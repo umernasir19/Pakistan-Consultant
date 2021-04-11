@@ -60,5 +60,10 @@ namespace SSS.Property.Setups
         //public List<PaymentMode_Property> Paymentmodelist { get; set; }//important to be Added
         //public List<Company_Bank_Property> BankList { get; set; }
         public List<mrnDetails_Property> MrnDetailsLST { get; set; }
+
+        public List<WareHouse_Property> WareHouseList { get; set; }
+        public int WarerHouseID { get; set; }
+
+
     }
 }

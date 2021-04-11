@@ -250,3 +250,8 @@ D:\Updated\Updated\SSS.Utility\bin\Debug\SSS.Utility.pdb
 D:\Updated\Updated\SSS.Utility\obj\Debug\SSS.Utility.csprojResolveAssemblyReference.cache
 D:\Updated\Updated\SSS.Utility\obj\Debug\SSS.Utility.dll
 D:\Updated\Updated\SSS.Utility\obj\Debug\SSS.Utility.pdb
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.Utility\bin\Debug\SSS.Utility.dll
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.Utility\bin\Debug\SSS.Utility.pdb
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.Utility\obj\Debug\SSS.Utility.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.Utility\obj\Debug\SSS.Utility.dll
+E:\Visual Studio Projects\MangoTechProjects\ABDUL GHAFOOR\24-3-2020\Updated24-03-21\Updated\SSS.Utility\obj\Debug\SSS.Utility.pdb
